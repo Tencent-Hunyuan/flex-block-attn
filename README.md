@@ -18,7 +18,7 @@ Flex-Block-Attn is a high-performance arbitrary sparse attention computation fra
 #### Custom kernel
 ```python
 from flex_block_attn import flex_block_attn_func
-from utils.utils import create_sparse_mask
+from benchmark.utils.utils import create_sparse_mask
 # take a (block_size * 2)*(block_size * 2) as an example
 # block size can be 64,128,192...
 '''[[0,1],
