@@ -55,7 +55,7 @@ hidden_states = ssta_3d_attention(query, key, value, thw,
                     text_mask=text_mask).permute(0,2,1,3)
 ```
 ### 🚀 Performance 
-We provide performance comparisons in the `benchmark` folder, including measurements for mask creation time, forward/backward execution time, and GPU memory usage across the following attention types: full attention, sparse static attention, and sparse dynamic attention.
+We provide performance comparisons in the **[benchmark](/benchmark/)**  folder, including measurements for mask creation time, forward/backward execution time, and GPU memory usage across the following attention types: full attention, sparse static attention, and sparse dynamic attention. Meanwhile, we have provided all the results(**[full attn](/benchmark/full/results/)**, **[static sparse attn](/benchmark/static/swa/results/)**, **[dynamic sparse attn](/benchmark/dynamic/random/results/)**) obtained from testing on the H20 GPU.
 ### ❗️Notes
 - The current dim must be 128
 - q tile_size can be any multiple of 64, k/v tile_size can be any multiple of 64, with 384 recommended (as we have performed additional optimizations for this size)
