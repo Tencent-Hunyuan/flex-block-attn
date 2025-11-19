@@ -56,6 +56,7 @@ hidden_states = ssta_3d_attention(query, key, value, thw,
 ```
 ### 🚀 Performance 
 We provide performance comparisons in the **[benchmark](/benchmark/)**  folder, including measurements for mask creation time, forward/backward execution time, and GPU memory usage across the following attention types: full attention, sparse static attention, and sparse dynamic attention. Meanwhile, we have provided all the results(**[full attn](/benchmark/full/results/)**, **[static sparse attn](/benchmark/static/swa/results/)**, **[dynamic sparse attn](/benchmark/dynamic/random/results/)**) obtained from testing on the H20 GPU.
+
 #### H20
 in dynamic mask scenes, we display FlexBlockAttn speedup using these parameters:
 * Sequence length 11520, 19200, 30720, 38400, 46080, 53760, 61440, 69120
@@ -70,6 +71,8 @@ in dynamic mask scenes, we display FlexBlockAttn speedup using these parameters:
 ##### Dynamic Memory
 ![FlexBlockAttn fwd memory](assets/h20_dynamic_fwd_mem.png)
 ![FlexBlockAttn bwd memory](assets/h20_dynamic_bwd_mem.png)
+
+
 
 ### ❗️Notes
 - The current dim must be 128
