@@ -26,7 +26,8 @@ from benchmark.utils.utils import create_sparse_mask
 selected_blocks = [[0,1],[1,0]]
 # create block mask with selected blocks
 sparse_mask = create_sparse_mask(q, block_size, selected_blocks)
-# for example if block_size=64, ths shape of sparse mask is [128,128]
+# sparse mask: torch.tensor([[0,1],[1,0]])
+# for example if block_size=64, ths shape of torch mask is [128,128]
 '''
 [[0,0,0...,0],[1,1,1...,1],
  [0,0,0...,0],[1,1,1...,1],
