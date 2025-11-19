@@ -3,6 +3,8 @@
 ### Introduction
 Flex-Block-Attn is a high-performance arbitrary sparse attention computation framework specifically designed for Hunyuan Video. It supports various sparse attention strategies including STA, MOBA, and SSTA (a hybrid of STA and MOBA) for both training and inference.Built upon ThunderKitten's attention demo implementation, this framework delivers arbitrary sparse attention computation capabilities optimized for Hopper architecture GPUs. It features PyTorch-like mask expressions that ensure high usability while enabling efficient sparse mask generation.
 
+![flex block attn](/assets/flex_block_attn.png)
+
 ### Install Flex Block Attention
  ```bash
  git submodule update --init --recursive
