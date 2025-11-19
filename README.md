@@ -15,7 +15,7 @@ Flex-Block-Attn is a high-performance arbitrary sparse attention computation fra
  ```
 
 ### 🔑 Usage
-#### custom kernel
+#### Custom kernel
 ```python
 from flex_block_attn import flex_block_attn_func
 from utils.utils import create_sparse_mask
@@ -41,19 +41,7 @@ sparse_mask = create_sparse_mask(q, block_size, selected_blocks)
 output = flex_block_attn_func(query, key, value, q_block_size, k_block_size, block_mask) 
 ```
 #### SSTA kernel
-```python
-from flex_block_attn import ssta_3d_attention
-#thw: latent shape
-hidden_states = ssta_3d_attention(query, key, value, thw,
-                    topk=128,
-                    tile_thw=(4,4,4),
-                    kernel_thw=(3,3,3),
-                    text_len=256,
-                    sparse_type='ssta',
-                    threshold=0.95,
-                    pad_type='zero',
-                    text_mask=text_mask).permute(0,2,1,3)
-```
+SSTA is a novel attention mechanism that integrates the sparse attention of both Moba and STA. It has been utilized in both the training and inference processes of Hunyuan Video. We will be open-sourcing all related code in the near future – stay tuned!
 ### 🚀 Performance 
 We provide performance comparisons in the **[benchmark](/benchmark/)**  folder, including measurements for mask creation time, forward/backward execution time, and GPU memory usage across the following attention types: full attention, sparse static attention, and sparse dynamic attention. Meanwhile, we have provided all the results(**[full attn](/benchmark/full/results/)**, **[static sparse attn](/benchmark/static/swa/results/)**, **[dynamic sparse attn](/benchmark/dynamic/random/results/)**) obtained from testing on the H20 GPU.
 #### H20
@@ -82,7 +70,7 @@ This project stands on the shoulders of the following amazing projects and resou
 
 - **[ThunderKittens](https://github.com/HazyResearch/ThunderKittens)** : Our project extends its computational engine, building additional logic layers while leveraging its core calculation capabilities. The underlying computational power is entirely provided by its excellent infrastructure.
 - **[MoBA](https://github.com/MoonshotAI/MoBA)**, **[STA(Sliding Tile Attention)](https://github.com/hao-ai-lab/FastVideo)**: In our video model training, we have drawn inspiration from the innovative contributions of these projects in sparse attention computation.
-- **[flash-attention](https://github.com/Dao-AILab/flash-attention)**, **[MagiAttention](https://github.com/SandAI-org/MagiAttention)**, **[flex attention](https://github.com/meta-pytorch/attention-gym)**, **[SpargeAttn](https://github.com/thu-ml/SpargeAttn)**, **[Triton](https://github.com/triton-lang/triton)**: These projects have been pivotal in advancing efficient and flexible attention mechanisms and high-performance GPU programming. Their collective work in long-sequence processing, sparsity optimization, and providing efficient computational backends has been a crucial source of inspiration, performance benchmarking, and validation foundation for our design and implementation.
+- **[flex attention](https://github.com/meta-pytorch/attention-gym)**, **[flash-attention](https://github.com/Dao-AILab/flash-attention)**, **[MagiAttention](https://github.com/SandAI-org/MagiAttention)**, **[SpargeAttn](https://github.com/thu-ml/SpargeAttn)**, **[Triton](https://github.com/triton-lang/triton)**: These projects have been pivotal in advancing efficient and flexible attention mechanisms and high-performance GPU programming. Their collective work in long-sequence processing, sparsity optimization, and providing efficient computational backends has been a crucial source of inspiration, performance benchmarking, and validation foundation for our design and implementation.
 
 
 We are grateful to the entire open-source community for their invaluable contributions.
