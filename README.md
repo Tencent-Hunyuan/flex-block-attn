@@ -5,6 +5,9 @@ Flex-Block-Attn is a high-performance arbitrary sparse attention computation fra
 
 ![flex block attn](/assets/flex_block_attn.png)
 
+### Project Updates
+[2025-11-19] We have released the Flex-Block-Attn implementation along with comprehensive benchmark results. We welcome the community to test and provide feedback!
+
 ### Install Flex Block Attention
  ```bash
  git submodule update --init --recursive
@@ -62,14 +65,9 @@ We provide performance comparisons in the `benchmark` folder, including measurem
 
 This project stands on the shoulders of the following amazing projects and resources. We extend our sincere gratitude to:
 
-- **[ThunderKittens](https://github.com/HazyResearch/ThunderKittens)** :Our project extends its computational engine, building additional logic layers while leveraging its core calculation capabilities. The underlying computational power is entirely provided by its excellent infrastructure.
-- **[flash-attention](https://github.com/Dao-AILab/flash-attention)** :As the current standard for efficient attention computation in long-sequence scenarios, FlashAttention's high-performance computational design has provided us with substantial inspiration. It has served as a critical benchmark for validating both the performance and correctness of our own implementations.
-- **[MagiAttention](https://github.com/SandAI-org/MagiAttention)** :As a purpose-built solution optimized for long-sequence scenarios in text-to-video generation, MagiAttention demonstrates excellent flexibility and performance through its development based on FA3. Being one of the most prominent projects in this domain, it has served as an essential reference for our performance and correctness validation.
-- **[flex attention](https://github.com/meta-pytorch/attention-gym)** :As the high-performance, highly flexible dynamic sparse attention framework introduced in PyTorch 2.3+, it aims to support various attention patterns (dense/sparse/block-sparse) through a unified API, eliminating the need for hand-written CUDA kernels. Its seamless integration with the PyTorch ecosystem has been instrumental in our rapid validation process.
-- **[SpargeAttn](https://github.com/thu-ml/SpargeAttn)**:
-- **[Triton](https://github.com/triton-lang/triton)**:
-- **[MoBA](https://github.com/MoonshotAI/MoBA)**:
-- **[STA(Sliding Tile Attention)](https://github.com/hao-ai-lab/FastVideo)**:
+- **[ThunderKittens](https://github.com/HazyResearch/ThunderKittens)** : Our project extends its computational engine, building additional logic layers while leveraging its core calculation capabilities. The underlying computational power is entirely provided by its excellent infrastructure.
+- **[MoBA](https://github.com/MoonshotAI/MoBA)**, **[STA(Sliding Tile Attention)](https://github.com/hao-ai-lab/FastVideo)**: In our video model training, we have drawn inspiration from the innovative contributions of these projects in sparse attention computation.
+- **[flash-attention](https://github.com/Dao-AILab/flash-attention)**, **[MagiAttention](https://github.com/SandAI-org/MagiAttention)**, **[flex attention](https://github.com/meta-pytorch/attention-gym)**, **[SpargeAttn](https://github.com/thu-ml/SpargeAttn)**, **[Triton](https://github.com/triton-lang/triton)**: These projects have been pivotal in advancing efficient and flexible attention mechanisms and high-performance GPU programming. Their collective work in long-sequence processing, sparsity optimization, and providing efficient computational backends has been a crucial source of inspiration, performance benchmarking, and validation foundation for our design and implementation.
 
 
 We are grateful to the entire open-source community for their invaluable contributions.
