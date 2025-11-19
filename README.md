@@ -50,15 +50,29 @@ in dynamic mask scenes, we display FlexBlockAttn speedup using these parameters:
 * Sequence length 11520, 19200, 30720, 38400, 46080, 53760, 61440, 69120
 * Block_size 384
 
-##### Dynamic Speedup
-![FlexBlockAttn create mask speedup on H20](assets/h20_dynamic_createmask.png)
-![FlexBlockAttn fwd speedup on H20](assets/h20_dynamic_fwd.png)
+#### sparse dynamic attention scenes
+In sparse dynamic attention scenes, attention mask is generated randomly with a a specified sparsity ratio.We display FlexBlockAttn speedup using these parameters:
+* Sequence length 11520, 19200, 30720, 38400, 46080, 53760, 61440, 69120
+* Block_size 384
+* Sparse rate 0.6
 
-![FlexBlockAttn bwd speedup on H20](assets/h20_dynamic_bwd.png)
+The performance(combined mask creation, forward and backward) of Flex Block Attention is better than mainstream sparse attention libraries.
 
-##### Dynamic Memory
-![FlexBlockAttn fwd memory](assets/h20_dynamic_fwd_mem.png)
-![FlexBlockAttn bwd memory](assets/h20_dynamic_bwd_mem.png)
+##### Dynamic Attention Speedup
+![FlexBlockAttn speedup on H20](assets/h20_dynamic_time_merge.png)
+
+##### Dynamic Attention Memory
+![FlexBlockAttn memory on H20](assets/h20_dynamic_mem_merge.png)
+
+
+#### full attention scenes
+In full attention scenes, the performance of Flex Block Attention is basically the same as FA3.
+
+##### Full Attention Speedup
+![FlexBlockAttn full attn speedup on H20](assets/h20_full_time_merge.png)
+
+##### Full Attention Memory
+![FlexBlockAttn full attn memory](assets/h20_full_mem_merge.png)
 
 ### ❗️Notes
 - The current dim must be 128
