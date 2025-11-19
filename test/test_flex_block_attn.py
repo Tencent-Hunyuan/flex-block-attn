@@ -129,7 +129,6 @@ def flex_block_attn_base(batch_size, seq_len, head_num, head_dim, q_block_size, 
     print("avg_diff_k_grad", torch.sum(abs_diff_k_grad).item() / abs_diff_k_grad.numel())
     print("max_diff_v_grad", torch.max(abs_diff_v_grad).item())
     print("avg_diff_v_grad", torch.sum(abs_diff_v_grad).item() / abs_diff_v_grad.numel())
-    print("pyb ral_max_diff_o", torch.max((torch.abs(pt_o) - torch.abs(tk_o))/torch.abs(pt_o)).item())
 
     torch.cuda.empty_cache()
     assert torch.allclose(tk_o, pt_o, rtol=1e-02, atol=5e-03)
