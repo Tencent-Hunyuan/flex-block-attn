@@ -1,7 +1,7 @@
-# Flex Block Attention
+# Flex Block Attn
 
 ### Introduction
-Flex-Block-Attn is a high-performance arbitrary sparse attention computation framework specifically designed for Hunyuan Video. It supports various sparse attention strategies including STA, MOBA, and SSTA (a hybrid of STA and MOBA) for both training and inference.Built upon ThunderKitten's attention demo implementation, this framework delivers arbitrary sparse attention computation capabilities optimized for Hopper architecture GPUs. It features PyTorch-like mask expressions that ensure high usability while enabling efficient sparse mask generation.
+Flex-Block-Attn is a high-performance arbitrary sparse attention computation framework specifically designed for Hunyuan Video. It supports various sparse attention strategies including STA, MOBA, and SSTA (a hybrid of STA and MOBA) for both training and inference. Built upon ThunderKitten's attention demo implementation, this framework delivers arbitrary sparse attention computation capabilities optimized for Hopper architecture GPUs. It features PyTorch-like mask expressions that ensure high usability while enabling efficient sparse mask generation.
 
 ![flex block attn](/assets/flex_block_attn.png)
 
@@ -58,7 +58,7 @@ hidden_states = ssta_3d_attention(query, key, value, thw,
 We provide performance comparisons in the **[benchmark](/benchmark/)**  folder, including measurements for mask creation time, forward/backward execution time, and GPU memory usage across the following attention types: full attention, sparse static attention, and sparse dynamic attention. Meanwhile, we have provided all the results(**[full attn](/benchmark/full/results/)**, **[static sparse attn](/benchmark/static/swa/results/)**, **[dynamic sparse attn](/benchmark/dynamic/random/results/)**) obtained from testing on the H20 GPU.
 ### ❗️Notes
 - The current dim must be 128
-- q tile_size can be any multiple of 64, k/v tile_size can be any multiple of 64, with 384 recommended (as we have performed additional optimizations for this size)
+- q tile_size can be any multiple of 16, k/v tile_size can be any multiple of 64, with 384 recommended (as we have performed additional optimizations for this size)
 - The current attention_mask only supports block-level masking. block_mask supports two shapes: [seq_len, seq_len] or [batch, head_num, seq_len, seq_len]
 
 ### 🙏 Acknowledgments
