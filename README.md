@@ -14,8 +14,24 @@ Flex-Block-Attn is a high-performance arbitrary sparse attention computation fra
 ```python
 from flex_block_attn import flex_block_attn_func
 from utils.utils import create_sparse_mask
+# take a (block_size * 2)*(block_size * 2) as an example
+# block size can be 64,128,192...
+'''[[0,1],
+    [1,0]]'''
+selected_blocks = [[0,1],[1,0]]
 # create block mask with selected blocks
 sparse_mask = create_sparse_mask(q, block_size, selected_blocks)
+# for example if block_size=64, ths shape of sparse mask is [128,128]
+'''
+[[0,0,0...,0],[1,1,1...,1],
+ [0,0,0...,0],[1,1,1...,1],
+ ...         , ...        ,
+ [0,0,0...,0],[1,1,1...,1],
+ [1,1,1...,1],[0,0,0...,0],
+ [1,1,1...,1],[0,0,0...,0],
+ ...         , ...        ,
+ [1,1,1...,1],[0,0,0...,0],]
+'''
 #compute 
 output = flex_block_attn_func(query, key, value, q_block_size, k_block_size, block_mask) 
 ```
