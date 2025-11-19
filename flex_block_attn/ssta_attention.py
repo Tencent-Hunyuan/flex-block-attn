@@ -17,47 +17,6 @@ def info(*args, **kwargs):
 def random_info(*args, **kwargs):
     if int(os.environ["RANK"]) <= 0 and (random.random() < 0.01):
         print(*args, **kwargs)
-
-class _AllGather(torch.autograd.Function):
-    @staticmethod
-    def forward(ctx, input_, dim, group):
-        ctx.dim = dim
-        ctx.group = group
-        world_size = dist.get_world_size(group)
-        input_size = list(input_.size())
-
-        sizes = [None] * world_size
-        dist.all_gather_object(sizes, input_.shape, group)
-
-        ctx.input_size = input_size[dim]
-
-        tensor_list = [torch.empty(sizes[i], dtype=input_.dtype, device=input_.device) for i in range(world_size)]
-        input_ = input_.contiguous()
-        dist.all_gather(tensor_list, input_, group=group)
-
-        output = torch.cat(tensor_list, dim=dim)
-        return output
-
-    @staticmethod
-    def backward(ctx, grad_output):
-        group = ctx.group
-        world_size = dist.get_world_size(group)
-        global_rank = dist.get_rank()
-        rank = dist.get_group_rank(group, global_rank)
-        dim = ctx.dim
-        input_size = ctx.input_size
-
-        # sizes = [input_size] * world_size
-
-        sizes = [None] * world_size
-        dist.all_gather_object(sizes, input_size, group=group)
-
-        grad_input_list = torch.split(grad_output, sizes, dim=dim)
-        grad_input = grad_input_list[rank]
-
-        return grad_input, None, None
-def all_gather(input_: torch.Tensor, dim: int = 1, group=None):
-    return _AllGather.apply(input_, dim, group)
     
 def tile(x, canvas_thw, tile_thw, sp_size=1):
     b, h, s, d = x.shape
@@ -287,17 +246,10 @@ def create_sta_3d_mask(q, k, canvas_thw, topk, tile_thw, kernel_thw, text_block_
 def create_ssta_3d_mask(q, k, canvas_thw, topk, tile_thw, kernel_thw, text_block_num=0, return_torch_mask=False, 
                         threshold=0.0, 
                         text_mask=None, 
-                        sp_size=1, sp_rank=0, sp_group=None,
                         mask_share_within_head=True):
-    sp_enabled = sp_size > 1
     import time
     start1 = time.time()
     sta_3d_mask = create_sta_3d_mask(q, k, canvas_thw, topk, tile_thw, kernel_thw, text_block_num, return_torch_mask)
-
-    if sp_enabled:
-        assert sp_group is not None
-        q = all_gather(q, dim=1, group=sp_group)
-        k = all_gather(k, dim=1, group=sp_group)
 
     start2 = time.time()
     moba_3d_mask = create_moba_3d_mask(q, k, canvas_thw, topk, tile_thw, kernel_thw, text_block_num, return_torch_mask, 
@@ -338,8 +290,7 @@ def ssta_3d_attention(all_q, all_k, all_v, canvas_thw, topk=1, tile_thw=(6, 8, 8
 	                 text_len=0, sparse_type='ssta', threshold=0.0,
 	                 pad_type="zero",
                      text_mask=None,
-                     mask_share_within_head=True,
-                     sp_size=1, sp_rank=0, sp_group=None):
+                     mask_share_within_head=True):
     info("pyb canvas_thw", canvas_thw, "tile_thw", tile_thw, "all_q.shape", all_q.shape, "kernel_thw", kernel_thw,"text_len", text_len)
     assert pad_type in ["zero", "repeat"]
     if text_len > 0:
@@ -490,7 +441,6 @@ def ssta_3d_attention(all_q, all_k, all_v, canvas_thw, topk=1, tile_thw=(6, 8, 8
                 text_block_num,
                 threshold=threshold,
                 text_mask=text_mask[i] if text_mask is not None else None,
-                sp_size=sp_size, sp_rank=sp_rank, sp_group=sp_group,
                 mask_share_within_head=mask_share_within_head
             )
             mask_list.append(block_mask)
