@@ -71,3 +71,17 @@ This project stands on the shoulders of the following amazing projects and resou
 
 
 We are grateful to the entire open-source community for their invaluable contributions.
+
+## 🔗Citation
+
+If you use this codebase or otherwise find our work valuable, please cite:
+
+```bibtex
+@misc{flex_block_attn2025,
+      title={flex-block-attn: an efficient block sparse attention  communication library},
+      author={},
+      year={2025},
+      publisher = {GitHub},
+      howpublished = {\url{https://github.com/Tencent-Hunyuan/flex-block-attn}},
+}
+```
