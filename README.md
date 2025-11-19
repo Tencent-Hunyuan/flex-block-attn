@@ -61,7 +61,7 @@ in dynamic mask scenes, we display FlexBlockAttn speedup using these parameters:
 
 ### ❗️Notes
 - The current dim must be 128
-- q tile_size can be any multiple of 64, k/v tile_size can be any multiple of 64, with 384 recommended (as we have performed additional optimizations for this size)
+- q tile_size can be any multiple of 16, k/v tile_size can be any multiple of 64, with 384 recommended (as we have performed additional optimizations for this size)
 - The current attention_mask only supports block-level masking. block_mask supports two shapes: [seq_len, seq_len] or [batch, head_num, seq_len, seq_len]
 
 ### 🙏 Acknowledgments
