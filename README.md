@@ -34,3 +34,18 @@ We provide performance comparisons in the `benchmark` folder, including measurem
 - The current dim must be 128
 - tile_size can be any multiple of 64, with 384 recommended (as we have performed additional optimizations for this size)
 - The current attention_mask only supports block-level masking. block_mask supports two shapes: [seq_len, seq_len] or [batch, head_num, seq_len, seq_len]
+
+### 🙏 Acknowledgments
+
+This project stands on the shoulders of the following amazing projects and resources. We extend our sincere gratitude to:
+
+- **[ThunderKittens](https://github.com/HazyResearch/ThunderKittens)** 
+- **[flash-attention](https://github.com/Dao-AILab/flash-attention)** 
+- **[MagiAttention](https://github.com/SandAI-org/MagiAttention)** 
+- **[flex attention](https://github.com/meta-pytorch/attention-gym)** 
+- **[SpargeAttn](https://github.com/thu-ml/SpargeAttn)**
+- **[Triton](https://github.com/triton-lang/triton)**
+- **[MoBA](https://github.com/MoonshotAI/MoBA)**
+
+
+We are grateful to the entire open-source community for their invaluable contributions.
