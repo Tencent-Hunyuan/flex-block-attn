@@ -8,13 +8,13 @@ Flex-Block-Attn is a high-performance arbitrary sparse attention computation fra
 ### Project Updates
 [2025-11-19] We have released the Flex-Block-Attn implementation along with comprehensive benchmark results. We welcome the community to test and provide feedback!
 
-### Install Flex Block Attention
+### 🛠️ Dependencies and Installation
  ```bash
  git submodule update --init --recursive
  python setup.py install
  ```
 
-### Usage
+### 🔑 Usage
 #### custom kernel
 ```python
 from flex_block_attn import flex_block_attn_func
@@ -54,9 +54,9 @@ hidden_states = ssta_3d_attention(query, key, value, thw,
                     pad_type='zero',
                     text_mask=text_mask).permute(0,2,1,3)
 ```
-### Performance 
+### 🚀 Performance 
 We provide performance comparisons in the `benchmark` folder, including measurements for mask creation time, forward/backward execution time, and GPU memory usage across the following attention types: full attention, sparse static attention, and sparse dynamic attention.
-### Notes
+### ❗️Notes
 - The current dim must be 128
 - q tile_size can be any multiple of 64, k/v tile_size can be any multiple of 64, with 384 recommended (as we have performed additional optimizations for this size)
 - The current attention_mask only supports block-level masking. block_mask supports two shapes: [seq_len, seq_len] or [batch, head_num, seq_len, seq_len]
