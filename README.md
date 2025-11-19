@@ -78,7 +78,7 @@ If you use this codebase or otherwise find our work valuable, please cite:
 
 ```bibtex
 @misc{flex_block_attn2025,
-      title={flex-block-attn: an efficient block sparse attention  communication library},
+      title={flex-block-attn: an efficient block sparse attention communication library},
       author={},
       year={2025},
       publisher = {GitHub},
