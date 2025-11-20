@@ -70,17 +70,11 @@ In sparse dynamic attention tasks, attention mask is generated randomly with a a
 
 The performance(combined mask creation, forward and backward) of Flex Block Attention is better than mainstream sparse attention libraries.
 
-##### H800 Dynamic Attention Speedup
-![FlexBlockAttn speedup on H800](assets/h800_dynamic_time_merge.png)
-
 ##### H20 Dynamic Attention Speedup
 ![FlexBlockAttn speedup on H20](assets/h20_dynamic_time_merge.png)
 
 #### Full attention
 In full attention tasks, Flex Block Attention continues to deliver robust performance.
-
-##### H800 Full Attention Speedup
-![FlexBlockAttn full attn speedup on H20](assets/h800_full_time_merge.png)
 
 ##### H20 Full Attention Speedup
 ![FlexBlockAttn full attn speedup on H20](assets/h20_full_time_merge.png)
