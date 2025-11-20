@@ -123,7 +123,7 @@ def main():
 
     # sparge_swa_mask_time = do_bench(fn=lambda:create_sparge_swa_mask(q,block_size,64,window_size),warmup=2,rep=8,return_mode="mean")
     # mask_id = create_sparge_swa_mask(q,block_size,64,window_size)
-    sparge_swa_mask_time = do_bench(
+    sparse_sage2_mask_time = do_bench(
         fn=lambda: create_sparge_random_mask(q, block_size, 64, selected_blocks),
         warmup=2,
         rep=8,
@@ -222,9 +222,8 @@ def main():
     print(f"create_torch_mask_time:{create_torch_mask_time}")
     print(f"create_flex_mask_time:{create_flex_mask_time}")
     print(f"create_ptm_mask_time:{create_sparse_mask_time}")
-    print(f"create_sparge_mask_time:{create_sparse_mask_time}")
+    print(f"create_sparse_sage2_mask_time:{sparse_sage2_mask_time}")
     print(f"magi_get_qkranges_time:{magi_get_qkranges_time}")
-    print(f"sparge_swa_mask_time:{sparge_swa_mask_time}")
 
     # print(f'fa2_execute_time:{fa2_execute_time}')
     # print(f'fa3_execute_time:{fa3_execute_time}')
@@ -257,7 +256,7 @@ def main():
     experiment_data["ptm_attn_masks"] = create_sparse_mask_time
     experiment_data["ptm_attn_executes"] = ptm_attn_execute_time
 
-    experiment_data["sparge_masks"] = sparge_swa_mask_time
+    experiment_data["sparge_masks"] = sparse_sage2_mask_time
     experiment_data["sparge_attn_executes"] = sparge_attn_execute_time
 
     experiment_data["result_torch_magi"] = result_torch_magi

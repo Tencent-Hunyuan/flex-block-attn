@@ -229,7 +229,7 @@ def main():
 
     # 使用方法1
     if args.save == 'true':
-        append_to_csv(experiment_data,f'../results/full_results_{block_size}.csv')
+        append_to_csv(experiment_data,f'../results/full_fwd_results_{block_size}.csv')
         print(f'results have been recorded')
 
 
