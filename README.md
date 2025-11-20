@@ -60,7 +60,7 @@ SSTA is a novel attention mechanism that integrates the sparse attention of both
 - The attention_mask only supports block-level masking. block_mask supports two shapes: [seq_len, seq_len] or [batch, head_num, seq_len, seq_len]
 
 ### 🚀 Performance 
-We provide performance comparisons in the **[benchmark](/benchmark/)**  folder, including measurements for mask creation time, forward/backward execution time, and GPU memory usage across the following attention types: full attention, sparse static attention, and sparse dynamic attention. Meanwhile, we have provided all the results(**[full attn](/benchmark/full/results/)**, **[static sparse attn](/benchmark/static/swa/results/)**, **[dynamic sparse attn](/benchmark/dynamic/random/results/)**) obtained from testing on the H20 GPU and H800 GPU.
+We provide performance comparisons in the **[benchmark](/benchmark/)**  folder, including measurements for mask creation time, forward/backward execution time, and GPU memory usage across the following attention types: full attention, sparse static attention, and sparse dynamic attention. Meanwhile, we have provided all the results(**[full attn](/benchmark/full/results/)**, **[static sparse attn](/benchmark/static/swa/results/)**, **[dynamic sparse attn](/benchmark/dynamic/random/results/)**) obtained from testing on the H800 GPU and H20 GPU.
 
 #### Sparse dynamic attention
 In sparse dynamic attention tasks, attention mask is generated randomly with a a specified sparsity ratio.We display FlexBlockAttn speedup using these parameters:
