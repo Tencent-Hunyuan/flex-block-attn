@@ -45,10 +45,6 @@ output = flex_block_attn_func(query, key, value, q_block_size, k_block_size, blo
 SSTA is a novel attention mechanism that integrates the sparse attention of both Moba and STA. It has been utilized in both the training and inference processes of Hunyuan Video. We will be open-sourcing all related code in the near future – stay tuned!
 ### 🚀 Performance 
 We provide performance comparisons in the **[benchmark](/benchmark/)**  folder, including measurements for mask creation time, forward/backward execution time, and GPU memory usage across the following attention types: full attention, sparse static attention, and sparse dynamic attention. Meanwhile, we have provided all the results(**[full attn](/benchmark/full/results/)**, **[static sparse attn](/benchmark/static/swa/results/)**, **[dynamic sparse attn](/benchmark/dynamic/random/results/)**) obtained from testing on the H20 GPU.
-#### Dynamic Attention
-in dynamic mask scenes, we display FlexBlockAttn speedup using these parameters:
-* Sequence length 11520, 19200, 30720, 38400, 46080, 53760, 61440, 69120
-* Block_size 384
 
 #### sparse dynamic attention scenes
 In sparse dynamic attention scenes, attention mask is generated randomly with a a specified sparsity ratio.We display FlexBlockAttn speedup using these parameters:
