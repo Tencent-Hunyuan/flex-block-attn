@@ -8,7 +8,12 @@ Flex-Block-Attn is an efficient block sparse attention communication library spe
 ### Project Updates
 [2025-11-19] We have released the Flex-Block-Attn implementation along with comprehensive benchmark results. We welcome the community to test and provide feedback!
 
-### 🛠️ Dependencies and Installation
+### 🛠️ Quick start
+#### Requirements
+- Hopper (SM90) GPUs, or other architectures with SM90 PTX ISA support
+- Python 3.8 and above
+- CUDA version 12.8 **[CUDA Toolkit](https://developer.nvidia.com/cuda-12-8-0-download-archive?target_os=Linux&target_arch=x86_64&Distribution=RHEL&target_version=8)**
+#### Installation
  ```bash
  git submodule update --init --recursive
  python setup.py install
@@ -21,14 +26,19 @@ from flex_block_attn import flex_block_attn_func
 from benchmark.utils.utils import create_sparse_mask
 # take a (block_size * 2)*(block_size * 2) as an example
 # block size can be 64,128,192...
-'''[[0,1],
-    [1,0]]'''
 selected_blocks = [[0,1],[1,0]]
 # create block mask with selected blocks
 sparse_mask = create_sparse_mask(q, block_size, selected_blocks)
-# sparse mask: torch.tensor([[0,1],[1,0]])
-# for example if block_size=64, ths shape of torch mask is [128,128]
+
 '''
+sparse mask: torch.tensor([[0,1],[1,0]])
+for example if block_size=64, ths shape of torch mask is [128,128]
+
+our sparse mask：
+[[0,1],
+ [1,0]]
+
+original torch mask:
 [[0,0,0...,0],[1,1,1...,1],
  [0,0,0...,0],[1,1,1...,1],
  ...         , ...        ,
