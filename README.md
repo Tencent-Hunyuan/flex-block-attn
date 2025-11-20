@@ -53,6 +53,12 @@ output = flex_block_attn_func(query, key, value, q_block_size, k_block_size, blo
 ```
 #### SSTA kernel
 SSTA is a novel attention mechanism that integrates the sparse attention of both Moba and STA. It has been utilized in both the training and inference processes of Hunyuan Video. We will be open-sourcing all related code in the near future – stay tuned!
+
+### ❗️Notes
+- The current dim must be 128
+- q tile_size can be any multiple of 16, k/v tile_size can be any multiple of 64, with 384 recommended (as we have performed additional optimizations for this size)
+- The current attention_mask only supports block-level masking. block_mask supports two shapes: [seq_len, seq_len] or [batch, head_num, seq_len, seq_len]
+
 ### 🚀 Performance 
 We provide performance comparisons in the **[benchmark](/benchmark/)**  folder, including measurements for mask creation time, forward/backward execution time, and GPU memory usage across the following attention types: full attention, sparse static attention, and sparse dynamic attention. Meanwhile, we have provided all the results(**[full attn](/benchmark/full/results/)**, **[static sparse attn](/benchmark/static/swa/results/)**, **[dynamic sparse attn](/benchmark/dynamic/random/results/)**) obtained from testing on the H20 GPU.
 
@@ -72,11 +78,6 @@ In full attention tasks, the performance of Flex Block Attention is basically th
 
 ##### Full Attention Speedup
 ![FlexBlockAttn full attn speedup on H20](assets/h20_full_time_merge.png)
-
-### ❗️Notes
-- The current dim must be 128
-- q tile_size can be any multiple of 16, k/v tile_size can be any multiple of 64, with 384 recommended (as we have performed additional optimizations for this size)
-- The current attention_mask only supports block-level masking. block_mask supports two shapes: [seq_len, seq_len] or [batch, head_num, seq_len, seq_len]
 
 ### 🙏 Acknowledgments
 
