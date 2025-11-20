@@ -57,17 +57,11 @@ The performance(combined mask creation, forward and backward) of Flex Block Atte
 ##### Dynamic Attention Speedup
 ![FlexBlockAttn speedup on H20](assets/h20_dynamic_time_merge.png)
 
-##### Dynamic Attention Memory
-![FlexBlockAttn memory on H20](assets/h20_dynamic_mem_merge.png)
-
 #### full attention scenes
 In full attention scenes, the performance of Flex Block Attention is basically the same as FA3.
 
 ##### Full Attention Speedup
 ![FlexBlockAttn full attn speedup on H20](assets/h20_full_time_merge.png)
-
-##### Full Attention Memory
-![FlexBlockAttn full attn memory](assets/h20_full_mem_merge.png)
 
 ### ❗️Notes
 - The current dim must be 128
