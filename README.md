@@ -55,7 +55,7 @@ output = flex_block_attn_func(query, key, value, q_block_size, k_block_size, blo
 SSTA is a novel attention mechanism that integrates the sparse attention of both Moba and STA. It has been utilized in both the training and inference processes of Hunyuan Video. We will be open-sourcing all related code in the near future – stay tuned!
 
 ### ❗️Notes
-- The current head dim must be 128
+- The head dim must be 128
 - q tile_size can be any multiple of 16, k/v tile_size can be any multiple of 64, with 384 recommended (as we have performed additional optimizations for this size)
 - The current attention_mask only supports block-level masking. block_mask supports two shapes: [seq_len, seq_len] or [batch, head_num, seq_len, seq_len]
 
