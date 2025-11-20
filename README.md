@@ -84,7 +84,7 @@ In full attention tasks, the performance of Flex Block Attention is basically th
 This project stands on the shoulders of the following amazing projects and resources. We extend our sincere gratitude to:
 
 - **[ThunderKittens](https://github.com/HazyResearch/ThunderKittens)** : Our project extends its computational engine, building additional logic layers while leveraging its core calculation capabilities. The underlying computational power is entirely provided by its excellent infrastructure.
-- **[MoBA](https://github.com/MoonshotAI/MoBA)**, **[STA(Sliding Tile Attention)](https://github.com/hao-ai-lab/FastVideo)**: In our video model training, we have drawn inspiration from the innovative contributions of these projects in sparse attention computation.
+- **[STA(Sliding Tile Attention)](https://github.com/hao-ai-lab/FastVideo)**, **[MoBA](https://github.com/MoonshotAI/MoBA)**: In our video model training, we have drawn inspiration from the innovative contributions of these projects in sparse attention computation.
 - **[flex attention](https://github.com/meta-pytorch/attention-gym)**, **[flash-attention](https://github.com/Dao-AILab/flash-attention)**, **[MagiAttention](https://github.com/SandAI-org/MagiAttention)**, **[SpargeAttn](https://github.com/thu-ml/SpargeAttn)**, **[Triton](https://github.com/triton-lang/triton)**: These projects have been pivotal in advancing efficient and flexible attention mechanisms and high-performance GPU programming. Their collective work in long-sequence processing, sparsity optimization, and providing efficient computational backends has been a crucial source of inspiration, performance benchmarking, and validation foundation for our design and implementation.
 
 
