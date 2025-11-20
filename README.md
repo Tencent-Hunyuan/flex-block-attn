@@ -77,7 +77,7 @@ The performance(combined mask creation, forward and backward) of Flex Block Atte
 ![FlexBlockAttn speedup on H20](assets/h20_dynamic_time_merge.png)
 
 #### Full attention
-In full attention tasks, the performance of Flex Block Attention is basically the same as FA3.
+In full attention tasks, Flex Block Attention continues to deliver robust performance.
 
 ##### H800 Full Attention Speedup
 ![FlexBlockAttn full attn speedup on H20](assets/h800_full_time_merge.png)
