@@ -56,8 +56,8 @@ SSTA is a novel attention mechanism that integrates the sparse attention of both
 ### 🚀 Performance 
 We provide performance comparisons in the **[benchmark](/benchmark/)**  folder, including measurements for mask creation time, forward/backward execution time, and GPU memory usage across the following attention types: full attention, sparse static attention, and sparse dynamic attention. Meanwhile, we have provided all the results(**[full attn](/benchmark/full/results/)**, **[static sparse attn](/benchmark/static/swa/results/)**, **[dynamic sparse attn](/benchmark/dynamic/random/results/)**) obtained from testing on the H20 GPU.
 
-#### sparse dynamic attention scenes
-In sparse dynamic attention scenes, attention mask is generated randomly with a a specified sparsity ratio.We display FlexBlockAttn speedup using these parameters:
+#### Sparse dynamic attention
+In sparse dynamic attention tasks, attention mask is generated randomly with a a specified sparsity ratio.We display FlexBlockAttn speedup using these parameters:
 * Sequence length 11520, 19200, 30720, 38400, 46080, 53760, 61440, 69120
 * Block_size 384
 * Sparse rate 0.6
@@ -67,8 +67,8 @@ The performance(combined mask creation, forward and backward) of Flex Block Atte
 ##### Dynamic Attention Speedup
 ![FlexBlockAttn speedup on H20](assets/h20_dynamic_time_merge.png)
 
-#### full attention scenes
-In full attention scenes, the performance of Flex Block Attention is basically the same as FA3.
+#### Full attention
+In full attention tasks, the performance of Flex Block Attention is basically the same as FA3.
 
 ##### Full Attention Speedup
 ![FlexBlockAttn full attn speedup on H20](assets/h20_full_time_merge.png)
