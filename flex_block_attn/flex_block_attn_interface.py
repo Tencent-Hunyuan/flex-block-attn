@@ -89,5 +89,19 @@ class FlexBlockAttnFunc(torch.autograd.Function):
         return dq, dk, dv, None, None, None, None, None
 
 def flex_block_attn_func(q, k, v, q_block_size, kv_block_size, block_mask):
+    """
+    Main function for flexible block attention computation.
+    
+    Args:
+        q: Query tensor of shape (batch_size, num_heads, q_seq_len, head_dim)
+        k: Key tensor of shape (batch_size, num_heads, kv_seq_len, head_dim)  
+        v: Value tensor of shape (batch_size, num_heads, kv_seq_len, head_dim)
+        q_block_size: Size of query blocks
+        kv_block_size: Size of key/value blocks
+        block_mask: Block mask tensor for attention pattern
+    
+    Returns:
+        Output tensor from the attention computation
+    """
     return FlexBlockAttnFunc.apply(q, k, v, q_block_size, kv_block_size, block_mask, torch.is_grad_enabled())
 
