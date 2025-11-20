@@ -97,7 +97,7 @@ If you use this codebase or otherwise find our work valuable, please cite:
 ```bibtex
 @misc{flex_block_attn2025,
       title={flex-block-attn: an efficient block sparse attention communication library},
-      author={Yuanbo Peng*, Penghao Zhao*, Jiangfeng Xiong, Fang Yang, Songtao Liu, Jianbing Wu, Zhao Zhong, Linus, Key, Peng Chen, Jie Jiang},
+      author={Yuanbo Peng*, Penghao Zhao*, Jiangfeng Xiong, Fang Yang, Songtao Liu, Jianbing Wu, Zhao Zhong, Key, Linus, Peng Chen, Jie Jiang},
       year={2025},
       publisher = {GitHub},
       howpublished = {\url{https://github.com/Tencent-Hunyuan/flex-block-attn}},
