@@ -1,7 +1,7 @@
 # Flex Block Attn
 
 ### Introduction
-Flex-Block-Attn is an efficient block sparse attention communication library specifically designed for Hunyuan Video. It supports various sparse attention strategies including STA, MOBA, and SSTA (a hybrid of STA and MOBA) for both training and inference.Built upon ThunderKitten's attention demo implementation, this library delivers arbitrary sparse attention computation capabilities optimized for Hopper architecture GPUs. It features PyTorch-like mask expressions that ensure high usability while enabling efficient sparse mask generation.
+Flex-Block-Attn is an efficient block sparse attention communication library specifically designed for Hunyuan Video. It supports various sparse attention strategies including STA, MOBA, and SSTA (a hybrid of STA and MOBA) for both training and inference. Built upon ThunderKitten's attention demo implementation, this library delivers arbitrary sparse attention computation capabilities optimized for Hopper architecture GPUs. It features PyTorch-like mask expressions that ensure high usability while enabling efficient sparse mask generation.
 
 ![flex block attn](/assets/flex_block_attn.png)
 
