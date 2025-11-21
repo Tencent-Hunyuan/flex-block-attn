@@ -102,7 +102,7 @@ If you use this codebase or otherwise find our work valuable, please cite:
 
 ```bibtex
 @misc{flex_block_attn2025,
-      title={flex-block-attn: an efficient block sparse attention communication library},
+      title={flex-block-attn: an efficient block sparse attention computation library},
       author={Yuanbo Peng*, Penghao Zhao*, Jiangfeng Xiong, Fang Yang, Songtao Liu, Jianbing Wu,
               Zhao Zhong, Key, Linus, Peng Chen, Jie Jiang},
       year={2025},
