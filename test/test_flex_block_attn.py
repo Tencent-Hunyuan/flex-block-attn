@@ -43,7 +43,7 @@ def create_mask(Q, q_block_size, kv_block_size):
     torch_mask = torch.tensor(mask, dtype=torch.bool, device=Q.device)
     print("block_mask", block_mask)
     #visualize_attn_mask(mask)
-    
+
     return torch_mask, block_mask
 
 def torch_attn_test(Q, K, V, mask):
@@ -64,7 +64,13 @@ def generate_tensor(shape, mean, std, dtype, device):
 
     return scaled_tensor.contiguous()
 
-def flex_block_attn_base(batch_size, seq_len, head_num, head_dim, q_block_size, kv_block_size):
+@pytest.mark.parametrize("batch_size", [1])
+@pytest.mark.parametrize("seq_len", [384 * 2, 384 * 4, 384 * 8])
+@pytest.mark.parametrize("head_num", [1, 2, 4])
+@pytest.mark.parametrize("head_dim", [128])
+@pytest.mark.parametrize("q_block_size", [16, 32, 64])
+@pytest.mark.parametrize("kv_block_size", [64, 128, 256, 384])
+def test_flex_block_attn(batch_size, seq_len, head_num, head_dim, q_block_size, kv_block_size):
     torch.manual_seed(0)
 
     mean = 1e-1
@@ -134,33 +140,7 @@ def flex_block_attn_base(batch_size, seq_len, head_num, head_dim, q_block_size, 
     assert torch.allclose(tk_o, pt_o, rtol=1e-02, atol=5e-03)
     #assert torch.allclose(tk_q_grad, pt_q_grad, rtol=5e-03, atol=5e-03)
 
-@pytest.mark.parametrize("batch_size", [1])
-@pytest.mark.parametrize("seq_len", [384 * 2, 384 * 4, 384 * 8])
-@pytest.mark.parametrize("head_num", [1, 2, 4])
-@pytest.mark.parametrize("head_dim", [128])
-@pytest.mark.parametrize("q_block_size", [16, 32, 64])
-@pytest.mark.parametrize("kv_block_size", [64, 128, 256, 384])
-def test_flex_block_attn_case1(batch_size, seq_len, head_num, head_dim, q_block_size, kv_block_size):
-    flex_block_attn_base(batch_size, seq_len, head_num, head_dim, q_block_size, kv_block_size)
-
-#@pytest.mark.parametrize("batch_size", [1])
-#@pytest.mark.parametrize("seq_len", [384 * 2, 384 * 4, 384 * 8])
-#@pytest.mark.parametrize("head_num", [1, 2, 4])
-#@pytest.mark.parametrize("head_dim", [128])
-#@pytest.mark.parametrize("q_block_size", [32])
-#@pytest.mark.parametrize("kv_block_size", [64, 128, 256, 384])
-#def test_flex_block_attn_case2(batch_size, seq_len, head_num, head_dim, q_block_size, kv_block_size):
-#    flex_block_attn_base(batch_size, seq_len, head_num, head_dim, q_block_size, kv_block_size)
-#
-#@pytest.mark.parametrize("batch_size", [1])
-#@pytest.mark.parametrize("seq_len", [384 * 2, 384 * 4, 384 * 8])
-#@pytest.mark.parametrize("head_num", [1, 2, 4])
-#@pytest.mark.parametrize("head_dim", [128])
-#@pytest.mark.parametrize("q_block_size, kv_block_size", [(v, v) for v in [64, 128, 256, 384]])
-#def test_flex_block_attn_case3(batch_size, seq_len, head_num, head_dim, q_block_size, kv_block_size):
-#    flex_block_attn_base(batch_size, seq_len, head_num, head_dim, q_block_size, kv_block_size)
-
-flex_block_attn_base(batch_size=1, seq_len=128, head_num=1, head_dim=128, q_block_size=16, kv_block_size=64)
-#flex_block_attn_base(batch_size=1, seq_len=3072, head_num=1, head_dim=128, q_block_size=16, kv_block_size=384)
-#flex_block_attn_base(batch_size=1, seq_len=256, head_num=1, head_dim=128, q_block_size=64, kv_block_size=128)
-#flex_block_attn_base(batch_size=1, seq_len=256, head_num=1, head_dim=128, q_block_size=128, kv_block_size=64)
+test_flex_block_attn(batch_size=1, seq_len=128, head_num=1, head_dim=128, q_block_size=16, kv_block_size=64)
+#test_flex_block_attn(batch_size=1, seq_len=3072, head_num=1, head_dim=128, q_block_size=16, kv_block_size=384)
+#test_flex_block_attn(batch_size=1, seq_len=256, head_num=1, head_dim=128, q_block_size=64, kv_block_size=128)
+#test_flex_block_attn(batch_size=1, seq_len=256, head_num=1, head_dim=128, q_block_size=128, kv_block_size=64)
