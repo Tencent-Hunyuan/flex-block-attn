@@ -42,7 +42,6 @@ def create_mask(Q, q_block_size, kv_block_size):
     block_mask = torch.tensor(block_mask, dtype=torch.bool, device=Q.device)
     torch_mask = torch.tensor(mask, dtype=torch.bool, device=Q.device)
     print("block_mask", block_mask)
-    #visualize_attn_mask(mask)
 
     return torch_mask, block_mask
 
