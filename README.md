@@ -56,7 +56,7 @@ SSTA is a novel attention mechanism that integrates the sparse attention of both
 
 ### ❗️Notes
 - The head dim must be 128.
-- q tile_size can be any multiple of 16, k/v tile_size can be any multiple of 64, with ***384*** recommended (as we have performed additional optimizations for this size).
+- The q tile_size can be any multiple of 16, k/v tile_size can be any multiple of 64, with ***384*** recommended (as we have performed additional optimizations for this size).
 - The sequence length of q and kv must be divisible by their respective tile sizes.
 - The attention_mask only supports block-level masking. block_mask supports two shapes: [seq_len, seq_len] or [batch, head_num, seq_len, seq_len].
 
