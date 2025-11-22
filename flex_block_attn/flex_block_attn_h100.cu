@@ -292,7 +292,6 @@ void fwd_attend_ker(const __grid_constant__ fwd_globals<D, T> g,
             div_row(o_reg, o_reg, norm_vec);
         }
 
-
         warpgroup::store(o_smem[warpgroupid], o_reg);
         warpgroup::sync(warpgroupid + num_warpgoups);
 
