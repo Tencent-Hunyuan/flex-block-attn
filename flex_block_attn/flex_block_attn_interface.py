@@ -20,8 +20,8 @@ class FlexBlockAttnFunc(torch.autograd.Function):
         assert kv_block_size % q_block_size == 0 or q_block_size % kv_block_size == 0, f"kv_block_size ({kv_block_size}) must be divisible by q_block_size ({q_block_size}), or vice versa."
         _, _, q_seq_len, _ = q.shape
         _, _, kv_seq_len, _ = k.shape
-        assert q_seq_len % 64 == 0, f"q_seq_len ({q_seq_len}) must be divisible by 64"
-        assert kv_seq_len % 64 == 0, f"kv_seq_len ({kv_seq_len}) must be divisible by 64"
+        assert q_seq_len % q_block_size == 0, f"q_seq_len ({q_seq_len}) must be divisible by q_block_size ({q_block_size})"
+        assert kv_seq_len % kv_block_size == 0, f"kv_seq_len ({kv_seq_len}) must be divisible by kv_block_size ({kv_block_size})"
 
         if block_mask.dim() == 2:
             q_block_num, kv_block_num = block_mask.shape
