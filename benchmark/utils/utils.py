@@ -276,7 +276,7 @@ def magi_attn(query,key,value,q_ranges,k_ranges,attn_type_map):
     # softmax_scale = None
     # print(f'softmax_scale:{softmax_scale}')
     # magi_output = flex_flash_attn_func(query,key,value,q_ranges,k_ranges,max_seqlen_q,max_seqlen_k,attn_type_map,softmax_scale=softmax_scale,disable_fwd_atomic_reduction=False)
-    magi_output = flex_flash_attn_func(query,key,value,q_ranges,k_ranges,attn_type_map,softmax_scale=softmax_scale)
+    magi_output = flex_flash_attn_func(query,key,value,q_ranges,k_ranges,attn_type_map,softmax_scale=softmax_scale,auto_range_merge=True)
 
     return magi_output[0]
 
